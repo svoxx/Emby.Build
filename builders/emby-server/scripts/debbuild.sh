@@ -43,10 +43,10 @@ prep_source() {
     VERSION=${_version}~beta
     SUFFIX="-beta"
   else
-    _version=$(curl -sL https://github.com/MediaBrowser/Emby/releases.atom | grep "<title>" | grep -v "beta" | grep -v "dev" | grep -v "note" | sed -e s%".*>\(.*\)<.*"%"\1"% | head -1)
+    _version=$(curl -sL https://github.com/svoxx/Emby/releases.atom | grep "<title>" | grep -v "beta" | grep -v "dev" | grep -v "note" | sed -e s%".*>\(.*\)<.*"%"\1"% | head -1)
     VERSION=${_version}
   fi
-  curl -L https://github.com/MediaBrowser/Emby/archive/$_version.tar.gz -o /tmp/source.tar.gz
+  curl -L https://github.com/svoxx/Emby/archive/$_version.tar.gz -o /tmp/source.tar.gz
   mkdir -p /var/cache/buildarea/emby-server${SUFFIX}-${VERSION}
   tar xvf /tmp/source.tar.gz --strip-components=1  -C /var/cache/buildarea/emby-server${SUFFIX}-${VERSION}
   cd /var/cache/buildarea/
