@@ -8,7 +8,7 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 NAME=emby-server
 CONF_FILE=/etc/${NAME}.conf
 DEFAULT_FILE=/etc/default/${NAME}
-SCRIPTNAME=/usr/bin/emby-server
+SCRIPTNAME=/bin/emby-server
 
 # Source Emby server default configuration
 . $DEFAULT_FILE

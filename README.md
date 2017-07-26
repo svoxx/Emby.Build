@@ -42,11 +42,23 @@ This subfolder contains all necessary files to build a [Docker](https://www.dock
 
 ## Supported Tags:
 
+#### Image - emby/embyserver
 * latest - latest stable release  
-* beta - latest beta release  
-* dev  - latest dev release  
+* x86_64 - latest stable release for x86_64  
 * armv7 - latest stable release for armv7 or armhf  
 * aarch64 - latest stable release for armv8 or aarch64  
+* x86_64_${VERSION} - $VERSION stable release for x86_64  
+* armv7_${VERSION} - $VERSION stable release for armv7 or armhf  
+* aarch64_${VERSION} - $VERSION stable release for armv8 or aarch64  
+
+#### Image - emby/embyserver_beta
+* latest - latest beta release  
+* x86_64 - latest beta release for x86_64  
+* armv7 - latest beta release for armv7 or armhf  
+* aarch64 - latest beta release for armv8 or aarch64  
+* x86_64_${VERSION} - $VERSION beta release for x86_64  
+* armv7_${VERSION} - $VERSION beta release for armv7 or armhf  
+* aarch64_${VERSION} - $VERSION beta release for armv8 or aarch64  
 
 ## Contributing:
 
@@ -208,14 +220,24 @@ for the various ways this can be achieved.
 
 In order to have the container periodically check and upgrade the embyserver binary
 one needs to add  a [`crontab`](https://en.wikipedia.org/wiki/Cron) entry. Like
-so:
+so, please keep in mind the command might need to be updated to reflect the
+container name:
 ```
 echo "0 2 * * * docker exec emby-server update" | sudo tee -a /var/spool/cron/crontabs/root
 ```
 or
 ```
+echo "0 2 * * * docker exec EmbyServer update" | sudo tee -a /var/spool/cron/crontabs/root
+```
+or
+```
+echo "0 2 * * * docker exec EmbyServerBeta update" | sudo tee -a /var/spool/cron/crontabs/root
+```
+or
+```
 echo "0 2 * * * emby-server update" | sudo tee -a /var/spool/cron/crontabs/root
 ```
+
 ## Removal:
 
 ```bash
