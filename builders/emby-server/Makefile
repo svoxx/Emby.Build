@@ -14,7 +14,7 @@ ENV_VARS = \
 PORTS = \
 		-p 8096:8096
 
-DIST = "debian/jessie"
+DIST = "debian/stretch"
 
 help:
 	@echo ""
