@@ -11,7 +11,8 @@ override_dh_auto_test:
 override_dh_clistrip:
 
 override_dh_auto_build:
-	sed 's/libMagickWand-6.Q8.so/libMagickWand-6.Q16.so.3/' -i $(CURDIR)/MediaBrowser.Server.Mono/ImageMagickSharp.dll.config
+	sed 's/libMagickWand-6.Q8.so.2/libMagickWand-6.Q16.so.3/' -i $(CURDIR)/MediaBrowser.Server.Mono/ImageMagickSharp.dll.config
+	sed 's/libsqlite3.so/\/usr\/lib\/x86_64-linux-gnu\/libsqlite3.so.0/' -i $(CURDIR)/MediaBrowser.Server.Mono/SQLitePCLRaw.provider.sqlite3.dll.config
 	xbuild $(CURDIR)/MediaBrowser.sln /p:Configuration="Release Mono" /p:Platform="Any Cpu" /property:OutputPath='$(CURDIR)/usr/lib/emby-server/bin' /t:build
 
 override_dh_auto_clean:
@@ -20,8 +21,8 @@ override_dh_auto_clean:
 # disable package does not produce library files
 override_dh_makeclilibs:
 
-# disable, does not work
 override_dh_clideps:
+	dh_clideps --exclude-moduleref=i:ole32 --exclude-moduleref=i:msvcrt --exclude-moduleref=i:Mono.Posix.dll --exclude-moduleref=i:MonoPosixHelper --exclude-moduleref=i:MediaInfo --exclude-moduleref=i:dl --exclude-moduleref i:libEGL.dll --exclude-moduleref i:libSkiaSharp.dll
 
 override_dh_installinit:
 	# use "emby-server" as our service name, not "emby-server-beta"
